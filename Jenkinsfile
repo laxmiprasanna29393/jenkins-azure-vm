@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh '''
                     az vm create \
-                    --resource-group learn-jenkins \
+                    --resource-group jenkins-rg \
                     --name jenkins-vm-${BUILD_NUMBER} \
                     --image Ubuntu2204 \
                     --admin-username azureuser \
