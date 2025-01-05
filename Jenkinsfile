@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'jenkins-agent'    // Specify your agent label here
+        label 'jenkins-agent'
     }
     
     environment {
@@ -26,9 +26,9 @@ pipeline {
             steps {
                 sh '''
                     az login --service-principal \
-                    -u $AZURE_CREDS_CLIENT_ID \
-                    -p $AZURE_CREDS_CLIENT_SECRET \
-                    --tenant $AZURE_CREDS_TENANT_ID
+                    --username "$AZURE_CREDS_USR" \
+                    --password "$AZURE_CREDS_PSW" \
+                    --tenant "dbd4e666-7a1b-4746-aa9d-a5e31edeac22"
                 '''
             }
         }
