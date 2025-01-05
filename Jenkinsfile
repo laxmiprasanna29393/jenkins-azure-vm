@@ -37,11 +37,13 @@ pipeline {
             steps {
                 sh '''
                     az vm create \
-                    --resource-group jenkins-rg \
+                    --resource-group learn-jenkins \
                     --name jenkins-vm-${BUILD_NUMBER} \
                     --image Ubuntu2204 \
                     --admin-username azureuser \
-                    --generate-ssh-keys
+                    --generate-ssh-keys \
+                    --location westus \
+                    --size Standard_B1s
                 '''
             }
         }
