@@ -6,6 +6,14 @@ pipeline {
     }
     
     stages {
+        stage('Check Prerequisites') {
+            steps {
+                sh '''
+                    which az || (echo "Azure CLI not found" && exit 1)
+                '''
+            }
+        }
+
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/laxmiprasanna29393/jenkins-azure-vm.git'
