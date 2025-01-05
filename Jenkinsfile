@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'jenkins-agent'    // Specify your agent label here
+    }
     
     environment {
         AZURE_CREDS = credentials('azure-credentials')
