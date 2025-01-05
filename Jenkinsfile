@@ -28,7 +28,7 @@ pipeline {
                     az login --service-principal \
                     --username "$AZURE_CREDS_USR" \
                     --password "$AZURE_CREDS_PSW" \
-                    --tenant "dbd4e666-7a1b-4746-aa9d-a5e31edeac22"
+                    --tenant "2cc254b7-e2b1-44aa-86fb-301882c4f17b"
                 '''
             }
         }
