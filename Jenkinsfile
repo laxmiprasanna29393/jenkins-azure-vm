@@ -2,16 +2,13 @@ pipeline {
     agent any
     
     environment {
-        AZURE_SUBSCRIPTION_ID = credentials('AZURE_SUBSCRIPTION_ID')
-        AZURE_TENANT_ID = credentials('AZURE_TENANT_ID')
-        AZURE_CLIENT_ID = credentials('AZURE_CLIENT_ID')
-        AZURE_CLIENT_SECRET = credentials('AZURE_CLIENT_SECRET')
+        AZURE_CREDS = credentials('azure-credentials')
     }
     
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'YOUR_GITHUB_REPO_URL'
+                git branch: 'main', url: 'https://github.com/laxmiprasanna29393/jenkins-azure-vm.git'
             }
         }
         
@@ -19,9 +16,9 @@ pipeline {
             steps {
                 sh '''
                     az login --service-principal \
-                    -u $AZURE_CLIENT_ID \
-                    -p $AZURE_CLIENT_SECRET \
-                    --tenant $AZURE_TENANT_ID
+                    -u $AZURE_CREDS_CLIENT_ID \
+                    -p $AZURE_CREDS_CLIENT_SECRET \
+                    --tenant $AZURE_CREDS_TENANT_ID
                 '''
             }
         }
@@ -30,7 +27,7 @@ pipeline {
             steps {
                 sh '''
                     az vm create \
-                    --resource-group jenkins-rg \
+                    --resource-group learn-jenkins \
                     --name jenkins-vm-${BUILD_NUMBER} \
                     --image Ubuntu2204 \
                     --admin-username azureuser \
